@@ -15,7 +15,7 @@
         <h1>Xinran Qin</h1>
         <div class="social-links" aria-label="Contact links">
           <a class="social-icon" href="https://scholar.google.com/citations?user=TD63QrsAAAAJ&amp;hl=zh-CN" target="_blank" rel="noreferrer" title="Google Scholar" aria-label="Google Scholar">Scholar</a>
-          <a class="social-icon" href="mailto:csqinxinran@gmail.com" title="Email" aria-label="Email">Email</a>
+          <button class="social-icon copy-link" type="button" data-copy="csqinxinran@gmail.com" title="Copy Email" aria-label="Copy Email">csqinxinran@gmail.com</button>
           <button class="social-icon copy-link" type="button" data-copy="XinXinran_rr" title="Copy WeChat" aria-label="Copy WeChat">WeChat</button>
           <a class="social-icon cv" href="resume-QXR.pdf" target="_blank" rel="noreferrer" title="Download CV" aria-label="Download CV">CV</a>
         </div>
@@ -174,7 +174,7 @@
         const original = button.textContent;
         try {
           await navigator.clipboard.writeText(button.dataset.copy);
-          button.textContent = "OK";
+          button.textContent = "copy";
         } catch {
           button.textContent = button.dataset.copy;
         }
