@@ -208,7 +208,48 @@
       </p>
     </section>
   </main>
+  <div class="image-preview" aria-hidden="true">
+    <img src="" alt="">
+  </div>
   <script>
+    const preview = document.querySelector(".image-preview");
+    const previewImage = preview.querySelector("img");
+
+    document.querySelectorAll(".pub").forEach((publication) => {
+      const image = publication.querySelector(".pub-image");
+      if (!image) return;
+
+      publication.addEventListener("mouseenter", () => {
+        previewImage.src = image.src;
+        previewImage.alt = image.alt;
+        preview.classList.add("is-visible");
+      });
+
+      publication.addEventListener("mousemove", (event) => {
+        const offset = 22;
+        const previewWidth = preview.offsetWidth || 360;
+        const previewHeight = preview.offsetHeight || 220;
+        const viewportGap = 12;
+        let left = event.clientX + offset;
+        let top = event.clientY + offset;
+
+        if (left + previewWidth + viewportGap > window.innerWidth) {
+          left = event.clientX - previewWidth - offset;
+        }
+        if (top + previewHeight + viewportGap > window.innerHeight) {
+          top = window.innerHeight - previewHeight - viewportGap;
+        }
+
+        preview.style.left = `${Math.max(viewportGap, left)}px`;
+        preview.style.top = `${Math.max(viewportGap, top)}px`;
+      });
+
+      publication.addEventListener("mouseleave", () => {
+        preview.classList.remove("is-visible");
+        previewImage.removeAttribute("src");
+      });
+    });
+
     document.querySelectorAll(".copy-link").forEach((button) => {
       button.addEventListener("click", async () => {
         const original = button.textContent;
