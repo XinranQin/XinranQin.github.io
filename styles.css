@@ -299,6 +299,13 @@ a:hover {
   color: #000;
 }
 
+.pub-links a[data-kind="page"]::before {
+  content: "↗";
+  background: #2f6fef;
+  color: #fff;
+  font-size: 10px;
+}
+
 .pub-links a:hover {
   border-color: #9f9f9f;
   background: #f1f1f1;
